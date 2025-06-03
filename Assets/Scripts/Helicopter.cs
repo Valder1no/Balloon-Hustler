@@ -1,20 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class PlaneSpawner : MonoBehaviour
+public class Helicopter : MonoBehaviour
 {
     public GameObject[] planePrefabs;
 
     public Vector3 spawnCenter = Vector3.zero;
     public Vector3 spawnSize = new Vector3(0, 10, 0);
 
-    public float moveSpeed;
+    public float moveSpeed = 4f;
 
-    public float minSpawnInterval = 1f;
-    private float maxSpawnInterval = 3f;
+    public float minSpawnInterval = 6f;
+    private float maxSpawnInterval = 8f;
 
-    public float spawnYOfsset = 25f;
+    public float spawnYOfsset = 35f;
 
     public GameObject camera;
 
@@ -22,10 +22,10 @@ public class PlaneSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnPlanesWithInterval());
+        StartCoroutine(SpawnHelicoptersWithInterval());
     }
 
-    IEnumerator SpawnPlanesWithInterval()
+    IEnumerator SpawnHelicoptersWithInterval()
     {
         while (true)
         {
@@ -59,7 +59,6 @@ public class PlaneSpawner : MonoBehaviour
 
         foreach (GameObject plane in spawnedPlanes)
         {
-            moveSpeed = Random.Range(7f, 15f);
             if (plane != null)
             {
                 plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
@@ -70,16 +69,6 @@ public class PlaneSpawner : MonoBehaviour
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(spawnCenter, spawnSize);
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("tryna explodisioneding");
-            if (other.CompareTag("Helicopter") || (other.CompareTag("Plane")))
-            {
-                Debug.Log("exploding");
-                Destroy(gameObject);
-            }
         }
     }
 }
