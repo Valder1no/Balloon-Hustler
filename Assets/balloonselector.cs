@@ -1,60 +1,79 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SelectTool : MonoBehaviour
+public class ObjectSelector : MonoBehaviour
 {
-    [Header("Assignable Selectable Objects (Max 3)")]
-    public GameObject[] selectableObjects = new GameObject[3];
+    public GameObject[] selectableObjects;
+    public float growSpeed = 0.5f;
+    public float maxSize = 3f;
 
     private int currentIndex = 0;
+    private Vector3[] originalScales;
 
     void Start()
     {
-        HighlightCurrentObject();
+        // Store original scales for reset
+        originalScales = new Vector3[selectableObjects.Length];
+        for (int i = 0; i < selectableObjects.Length; i++)
+        {
+            originalScales[i] = selectableObjects[i].transform.localScale;
+        }
+
+        UpdateSelectionVisuals();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            CycleSelection(1);
+            currentIndex = (currentIndex + 1) % selectableObjects.Length;
+            UpdateSelectionVisuals();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            CycleSelection(-1);
+            currentIndex = (currentIndex - 1 + selectableObjects.Length) % selectableObjects.Length;
+            UpdateSelectionVisuals();
         }
-    }
 
-    void CycleSelection(int direction)
-    {
-        UnhighlightCurrentObject();
-
-        // Move index with wrap-around
-        currentIndex = (currentIndex + direction + selectableObjects.Length) % selectableObjects.Length;
-
-        HighlightCurrentObject();
-    }
-
-    void HighlightCurrentObject()
-    {
-        if (selectableObjects[currentIndex] != null)
+        // Tap Up Arrow → Reset all balloons
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Renderer rend = selectableObjects[currentIndex].GetComponent<Renderer>();
-            if (rend != null)
+            ResetAllBalloonSizes();
+        }
+
+        // Hold Up Arrow → Grow selected balloon
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            BalloonBehavior selected = selectableObjects[currentIndex].GetComponent<BalloonBehavior>();
+            if (selected != null)
             {
-                rend.material.color = Color.yellow; // Highlight color
+                selected.GrowBalloonWithMaxSize(growSpeed, maxSize);
             }
         }
     }
 
-    void UnhighlightCurrentObject()
+    void ResetAllBalloonSizes()
     {
-        if (selectableObjects[currentIndex] != null)
+        for (int i = 0; i < selectableObjects.Length; i++)
         {
-            Renderer rend = selectableObjects[currentIndex].GetComponent<Renderer>();
+            selectableObjects[i].transform.localScale = originalScales[i];
+        }
+    }
+
+    void UpdateSelectionVisuals()
+    {
+        for (int i = 0; i < selectableObjects.Length; i++)
+        {
+            GameObject obj = selectableObjects[i];
+            Transform outline = obj.transform.Find("Outline");
+            Renderer rend = obj.GetComponent<Renderer>();
+
+            bool isSelected = (i == currentIndex);
+
+            if (outline != null)
+                outline.gameObject.SetActive(isSelected);
+
             if (rend != null)
-            {
-                rend.material.color = Color.red; // Default color
-            }
+                rend.material.color = isSelected ? Color.yellow : Color.red;
         }
     }
 }
