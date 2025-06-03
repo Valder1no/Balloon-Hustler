@@ -62,7 +62,7 @@ public class LeftPlane : MonoBehaviour
             moveSpeed = Random.Range(7f, 15f);
             if (plane != null)
             {
-                plane.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+                plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
         }
 
