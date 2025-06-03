@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneSpawner : MonoBehaviour
+public class LeftPlane : MonoBehaviour
 {
     public GameObject[] planePrefabs;
 
     public Vector3 spawnCenter = Vector3.zero;
     public Vector3 spawnSize = new Vector3(0, 10, 0);
 
-    public float moveSpeed = 7f;
+    public float moveSpeed;
 
     public float minSpawnInterval = 1f;
     private float maxSpawnInterval = 3f;
@@ -22,10 +22,10 @@ public class PlaneSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnPlanesWithInterval());
+        StartCoroutine(SpawnPlanesWithInterval2());
     }
 
-    IEnumerator SpawnPlanesWithInterval()
+    IEnumerator SpawnPlanesWithInterval2()
     {
         while (true)
         {
@@ -62,7 +62,7 @@ public class PlaneSpawner : MonoBehaviour
             moveSpeed = Random.Range(7f, 15f);
             if (plane != null)
             {
-                plane.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+                plane.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
             }
         }
 
