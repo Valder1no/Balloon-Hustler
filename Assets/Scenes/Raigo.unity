@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50fdb8b803ee940a61a4fcda5b42f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftForce: 10
+  liftForce: 15
   maxLiftSpeed: 2
   wobbleAmount: 0.1
   wobbleSpeed: 1
@@ -3687,7 +3687,8 @@ MonoBehaviour:
   spawnCenter: {x: -80, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 4
-  minSpawnInterval: 6
+  minSpawnInterval: 8
+  maxSpawnInterval: 12
   spawnYOfsset: 35
   camera: {fileID: 133083473}
 --- !u!114 &498363409
@@ -3707,7 +3708,8 @@ MonoBehaviour:
   spawnCenter: {x: 80, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 4
-  minSpawnInterval: 6
+  minSpawnInterval: 8
+  maxSpawnInterval: 12
   spawnYOfsset: 35
   camera: {fileID: 133083473}
 --- !u!114 &498363410
@@ -3723,12 +3725,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefabs:
-  - {fileID: 8367916847682808614, guid: b43ec5d75b0034c45acb4a780716cd09, type: 3}
-  - {fileID: 8367916847682808614, guid: e82995b845972d045b18ddc2a83cae21, type: 3}
+  - {fileID: 1991640603}
+  - {fileID: 683294887}
   spawnCenter: {x: 80, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 7
-  minSpawnInterval: 1
+  minSpawnInterval: 3
+  maxSpawnInterval: 6
   spawnYOfsset: 25
   camera: {fileID: 133083473}
 --- !u!114 &498363411
@@ -3744,12 +3747,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefabs:
-  - {fileID: 2358033062660401029, guid: 834d514897504df48b1100923861d59e, type: 3}
-  - {fileID: 2358033062660401029, guid: 01302723ded219c4fbea57c85e2e8160, type: 3}
+  - {fileID: 683294887}
+  - {fileID: 756556930645523434, guid: 97ac08428e21e0341bd411a6016c3ed1, type: 3}
   spawnCenter: {x: 80, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 7
-  minSpawnInterval: 1
+  minSpawnInterval: 3
+  maxSpawnInterval: 6
   spawnYOfsset: 15
   camera: {fileID: 133083473}
 --- !u!4 &498363412
@@ -8737,7 +8741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50fdb8b803ee940a61a4fcda5b42f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftForce: 10
+  liftForce: 15
   maxLiftSpeed: 2
   wobbleAmount: 0.1
   wobbleSpeed: 1
