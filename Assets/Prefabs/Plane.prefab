@@ -201,7 +201,8 @@ GameObject:
   - component: {fileID: 3015011066005974141}
   - component: {fileID: 698674744647085772}
   - component: {fileID: 6514877047892645051}
-  - component: {fileID: -5218161184724181154}
+  - component: {fileID: -463897719815304573}
+  - component: {fileID: -4110826838296847221}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Plane
@@ -218,9 +219,15 @@ Transform:
   m_GameObject: {fileID: 2358033062660401029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.1700003, y: 2.1700003, z: 2.1700003}
   m_ConstrainProportionsScale: 1
+=======
+  m_LocalPosition: {x: 0, y: 10000, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+>>>>>>> origin/Valdis
   m_Children:
   - {fileID: 8213725703799479684}
   - {fileID: 8769535738945769029}
@@ -269,13 +276,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5.489602, y: 0.4978463, z: 1.7442399}
   m_Center: {x: 0.2586372, y: 0.553288, z: 1.4394176}
---- !u!54 &-5218161184724181154
+--- !u!114 &-463897719815304573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358033062660401029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f226c6770a4b2e1408107f2cef1f20b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 198917022394846920, guid: c5c9831f19970bc4dbe1ad757b91083f, type: 3}
+--- !u!54 &-4110826838296847221
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,10 +317,14 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
+<<<<<<< HEAD
   m_Constraints: 124
+=======
+  m_Constraints: 120
+>>>>>>> origin/Valdis
   m_CollisionDetection: 0
 --- !u!1 &2810781475088363148
 GameObject:

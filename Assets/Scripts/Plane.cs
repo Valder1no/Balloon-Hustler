@@ -18,6 +18,8 @@ public class PlaneSpawner : MonoBehaviour
 
     public GameObject camera;
 
+    //public GameObject smokePrefab;
+
     private List<GameObject> spawnedPlanes = new List<GameObject>();
 
     void Start()
@@ -36,9 +38,16 @@ public class PlaneSpawner : MonoBehaviour
             );
 
             GameObject randomPlanePrefab = planePrefabs[Random.Range(0, planePrefabs.Length)];
+            
+            // Here we can choose the offset of the smoke based off of the Random Range we just got (1 plane - smaller y; 2 plane - la)
 
             GameObject plane = Instantiate(randomPlanePrefab, randomPosition, randomPlanePrefab.transform.rotation);
             spawnedPlanes.Add(plane);
+
+            //GameObject smoke = Instantiate(smokePrefab, plane.transform);
+            //smoke.transform.localPosition = new Vector3(2, 3, 0);
+
+            //smoke.transform.rotation = plane.transform.rotation * Quaternion.Euler(0, 180f, 0);
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
@@ -70,16 +79,6 @@ public class PlaneSpawner : MonoBehaviour
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(spawnCenter, spawnSize);
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("tryna explodisioneding");
-            if (other.CompareTag("Helicopter") || (other.CompareTag("Plane")))
-            {
-                Debug.Log("exploding");
-                Destroy(gameObject);
-            }
         }
     }
 }
