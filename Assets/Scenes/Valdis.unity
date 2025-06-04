@@ -600,7 +600,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1076,7 +1076,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1444,7 +1444,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -11102,8 +11102,9 @@ MonoBehaviour:
   spawnCenter: {x: 26.8, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 7
-  minSpawnInterval: 1
-  spawnYOfsset: 15
+  minSpawnInterval: 3
+  maxSpawnInterval: 5
+  spawnYOfsset: 25
   camera: {fileID: 1719859375}
 --- !u!4 &1686014713
 Transform:
@@ -11138,7 +11139,8 @@ MonoBehaviour:
   spawnCenter: {x: -26.8, y: 35, z: 6}
   spawnSize: {x: 0, y: 10, z: 0}
   moveSpeed: 7
-  minSpawnInterval: 1
+  minSpawnInterval: 3
+  maxSpawnInterval: 5
   spawnYOfsset: 25
   camera: {fileID: 1719859375}
 --- !u!114 &1686014715
@@ -11455,6 +11457,7 @@ GameObject:
   - component: {fileID: 1719859377}
   - component: {fileID: 1719859376}
   - component: {fileID: 1719859379}
+  - component: {fileID: 1719859380}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11503,7 +11506,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 27.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -11530,8 +11533,8 @@ Transform:
   m_GameObject: {fileID: 1719859375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.76, z: -26.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.7, y: 7.76, z: -26.2}
+  m_LocalScale: {x: 0.51504, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -11580,6 +11583,18 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1719859380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719859375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cccafacfba4d04b8f5b2cd383ec7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738008933
 GameObject:
   m_ObjectHideFlags: 0
@@ -13249,7 +13264,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

@@ -70,16 +70,6 @@ public class LeftHelicopter : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(spawnCenter, spawnSize);
         }
-
-        void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("tryna explodisioneding");
-            if (other.CompareTag("Helicopter") || (other.CompareTag("Plane")))
-            {
-                Debug.Log("exploding");
-                Destroy(gameObject);
-            }
-        }
     }
 }
 
