@@ -42,7 +42,7 @@ public class LeftPlane : MonoBehaviour
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
-            Destroy(plane, 10f);
+            Destroy(plane, 16f);
         }
     }
 
@@ -65,11 +65,10 @@ public class LeftPlane : MonoBehaviour
                 plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
         }
-
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(spawnCenter, spawnSize);
-        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(spawnCenter, spawnSize);
     }
 }

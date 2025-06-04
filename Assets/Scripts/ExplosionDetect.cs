@@ -2,21 +2,17 @@ using UnityEngine;
 
 public class PlaneCollision : MonoBehaviour
 {
-    public ParticleSystem explosionPrefab;
+    public GameObject explosionPrefab;
+
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Triggered by: {other.name}");
-        if (other.CompareTag("Plane"))
+        if (other.CompareTag("Plane") || (other.CompareTag("Helicopter")))
         {
-            Explosionising();
-            Debug.Log("Boom!");
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-        }
-    }
+            Debug.Log("blowing up");
+            Instantiate(explosionPrefab, transform.position, transform.rotation);
 
-    void Explosionising() 
-    {
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,8 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
-public class Helicopter : MonoBehaviour
+public class HelicopterSpawner : MonoBehaviour
 {
     public GameObject[] planePrefabs;
 
@@ -14,7 +14,7 @@ public class Helicopter : MonoBehaviour
     public float minSpawnInterval = 6f;
     public float maxSpawnInterval = 8f;
 
-    public float spawnYOfsset = 35f;
+    public float spawnYOffset = 35f;
 
     public GameObject camera;
 
@@ -42,7 +42,7 @@ public class Helicopter : MonoBehaviour
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
-            Destroy(plane, 10f);
+            Destroy(plane, 20f);
         }
     }
 
@@ -52,7 +52,7 @@ public class Helicopter : MonoBehaviour
         {
             spawnCenter = new Vector3(
                 spawnCenter.x,
-                camera.transform.position.y + spawnYOfsset,
+                camera.transform.position.y + spawnYOffset,
                 spawnCenter.z
             );
         }
@@ -64,11 +64,11 @@ public class Helicopter : MonoBehaviour
                 plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
         }
+    }
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(spawnCenter, spawnSize);
-        }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(spawnCenter, spawnSize);
     }
 }

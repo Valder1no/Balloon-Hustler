@@ -1,39 +1,30 @@
 using UnityEngine;
 
-public class PlayerAttraction : MonoBehaviour
+public class HelicopterAttractor : MonoBehaviour
 {
-    private Rigidbody rb;
-    private Transform currentHelicopter;
+    public float detectionRadius = 10f;
+    public float pullStrength = 5f;
+    public LayerMask Player;  // Assign only the Player layer in Inspector
 
-    public float pullForce = 8f;
-
-    void Start()
+    void Update()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Helicopter"))
+        Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, Player);
+        foreach (Collider hit in hits)
         {
-            currentHelicopter = other.transform;
+            Debug.Log("getting pulled");
+            Rigidbody rb = hit.attachedRigidbody;
+            if (rb != null)
+            {
+                Debug.Log("getting pulled ACTUALY");
+                Vector3 directionToHelicopter = (transform.position - rb.position).normalized;
+                rb.AddForce(directionToHelicopter * pullStrength, ForceMode.Acceleration);
+            }
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnDrawGizmosSelected()
     {
-        if (other.CompareTag("Helicopter") && other.transform == currentHelicopter)
-        {
-            currentHelicopter = null;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (currentHelicopter != null)
-        {
-            Vector3 direction = (currentHelicopter.position - transform.position).normalized;
-            rb.AddForce(direction * pullForce);
-        }
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

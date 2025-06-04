@@ -42,7 +42,7 @@ public class LeftHelicopter : MonoBehaviour
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
-            Destroy(plane, 10f);
+            Destroy(plane, 20f);
         }
     }
 

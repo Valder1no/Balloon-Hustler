@@ -38,8 +38,6 @@ public class PlaneSpawner : MonoBehaviour
             );
 
             GameObject randomPlanePrefab = planePrefabs[Random.Range(0, planePrefabs.Length)];
-            
-            // Here we can choose the offset of the smoke based off of the Random Range we just got (1 plane - smaller y; 2 plane - la)
 
             GameObject plane = Instantiate(randomPlanePrefab, randomPosition, randomPlanePrefab.transform.rotation);
             spawnedPlanes.Add(plane);
@@ -51,7 +49,7 @@ public class PlaneSpawner : MonoBehaviour
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
-            Destroy(plane, 10f);
+            Destroy(plane, 16f);
         }
     }
 
@@ -74,11 +72,10 @@ public class PlaneSpawner : MonoBehaviour
                 plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
         }
-
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(spawnCenter, spawnSize);
-        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(spawnCenter, spawnSize);
     }
 }
