@@ -12,7 +12,7 @@ public class PlaneSpawner : MonoBehaviour
     public float moveSpeed;
 
     public float minSpawnInterval = 1f;
-    private float maxSpawnInterval = 3f;
+    public float maxSpawnInterval = 3f;
 
     public float spawnYOfsset = 25f;
 

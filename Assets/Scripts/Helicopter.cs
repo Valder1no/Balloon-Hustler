@@ -12,7 +12,7 @@ public class Helicopter : MonoBehaviour
     public float moveSpeed = 4f;
 
     public float minSpawnInterval = 6f;
-    private float maxSpawnInterval = 8f;
+    public float maxSpawnInterval = 8f;
 
     public float spawnYOfsset = 35f;
 
