@@ -11,11 +11,25 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 currentVelocity = Vector3.zero;
 
+    // Wind variables
+    private float windStrength = 0f;
+    public float maxWindForce = 2f;
+    public float windChangeInterval = 5f;
+    private float windChangeTimer = 0f;
+
+    //wind arrors
+    public GameObject windArrowRightPrefab;
+    public GameObject windArrowLeftPrefab;
+    private GameObject currentWindArrow;
+
+    private AudioSource audioSource;
+
     void Update()
     {
-        // inputs
-        Vector3 input = Vector3.zero;
+        UpdateWind();
 
+        // Input
+        Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.LeftArrow)) input.x = -1;
         if (Input.GetKey(KeyCode.RightArrow)) input.x = 1;
         if (Input.GetKey(KeyCode.UpArrow)) input.y = 1;
@@ -23,16 +37,46 @@ public class PlayerMovement : MonoBehaviour
 
         input = input.normalized;
 
-        // atrums
-        Vector3 targetVelocity = new Vector3(input.x * moveSpeed, input.y * verticalSpeed, 0f);
+        // Apply wind to movement
+        float windEffect = windStrength;
+        Vector3 targetVelocity = new Vector3(input.x * moveSpeed + windEffect, input.y * verticalSpeed, 0f);
         currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, Time.deltaTime * acceleration);
         transform.position += currentVelocity * Time.deltaTime;
 
-        // balonu pushana
+        // Balloon inflation
         float leftInflate = Mathf.Clamp01((1 - input.x) / 2f + input.y);
         float rightInflate = Mathf.Clamp01((1 + input.x) / 2f + input.y);
 
         if (leftBalloon != null) leftBalloon.Inflate(leftInflate);
         if (rightBalloon != null) rightBalloon.Inflate(rightInflate);
+    }
+
+    void UpdateWind()
+    {
+        windChangeTimer -= Time.deltaTime;
+        if (windChangeTimer <= 0f)
+        {
+            windChangeTimer = windChangeInterval;
+            windStrength = Random.Range(-maxWindForce, maxWindForce);
+            Debug.Log("Wind changed to: " + windStrength);
+
+            if (currentWindArrow != null)
+            {
+                Destroy(currentWindArrow);
+            }
+
+            if (windStrength > 0.1f)
+            {
+                currentWindArrow = Instantiate(windArrowRightPrefab, transform);
+
+            }
+            else if (windStrength < -0.1f)
+            {
+                currentWindArrow = Instantiate(windArrowLeftPrefab, transform);
+            }
+
+            currentWindArrow.transform.localPosition = new Vector3(0, -1, -1.5f);
+
+        }
     }
 }

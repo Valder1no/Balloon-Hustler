@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ public class LeftPlane : MonoBehaviour
 
     public GameObject camera;
 
+    public GameObject smokePrefab;
+
     private List<GameObject> spawnedPlanes = new List<GameObject>();
 
     void Start()
@@ -35,13 +37,30 @@ public class LeftPlane : MonoBehaviour
                 Random.Range(-spawnSize.z / 2, spawnSize.z / 2)
             );
 
-            GameObject randomPlanePrefab = planePrefabs[Random.Range(0, planePrefabs.Length)];
+            int randomIndex = Random.Range(0, planePrefabs.Length);
+            GameObject randomPlanePrefab = planePrefabs[randomIndex];
 
             GameObject plane = Instantiate(randomPlanePrefab, randomPosition, randomPlanePrefab.transform.rotation);
             spawnedPlanes.Add(plane);
 
+            // Add smoke
+            Vector3 smokeOffset;
+            if (randomIndex == 0)
+            {
+                smokeOffset = new Vector3(0, 0, -4);
+            }
+            else
+            {
+                smokeOffset = new Vector3(0, 4, 3);
+            }
+
+            GameObject smoke = Instantiate(smokePrefab, plane.transform);
+            smoke.transform.localPosition = smokeOffset;
+            smoke.transform.rotation = plane.transform.rotation * Quaternion.Euler(0, 180f, 0);
+
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
+
             Destroy(plane, 16f);
         }
     }
@@ -66,6 +85,7 @@ public class LeftPlane : MonoBehaviour
             }
         }
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

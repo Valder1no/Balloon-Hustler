@@ -3,21 +3,21 @@ using UnityEngine;
 public class HelicopterAttractor : MonoBehaviour
 {
     public float detectionRadius = 10f;
-    public float pullStrength = 5f;
-    public LayerMask Player;  // Assign only the Player layer in Inspector
+    public float pullSpeed = 2f;
+    public string playerTag = "Player";
 
     void Update()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, Player);
+        Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius);
         foreach (Collider hit in hits)
         {
-            Debug.Log("getting pulled");
-            Rigidbody rb = hit.attachedRigidbody;
-            if (rb != null)
+            if (hit.CompareTag(playerTag))
             {
-                Debug.Log("getting pulled ACTUALY");
-                Vector3 directionToHelicopter = (transform.position - rb.position).normalized;
-                rb.AddForce(directionToHelicopter * pullStrength, ForceMode.Acceleration);
+                Debug.Log("Pulling player with Translate");
+                Transform playerTransform = hit.transform;
+                Vector3 directionToHelicopter = (transform.position - playerTransform.position).normalized;
+
+                playerTransform.Translate(directionToHelicopter * pullSpeed * Time.deltaTime);
             }
         }
     }

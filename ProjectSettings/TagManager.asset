@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Helicopter
   - Plane
+  - Kofer
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - TopLayer
   - 
   - 
   - 

@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 1171491877443033072}
   - component: {fileID: 4455608349651231974}
   - component: {fileID: -5650826795507512045}
+  - component: {fileID: -6455853396860323740}
   m_Layer: 0
   m_Name: Plane11
   m_TagString: Plane
@@ -768,6 +769,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1121192042590650, guid: c5c9831f19970bc4dbe1ad757b91083f, type: 3}
+--- !u!64 &-6455853396860323740
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108369269448237274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5340458911354182525
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class PlaneSpawner : MonoBehaviour
 
     public GameObject camera;
 
-    //public GameObject smokePrefab;
+    public GameObject smokePrefab;
 
     private List<GameObject> spawnedPlanes = new List<GameObject>();
 
@@ -37,18 +37,29 @@ public class PlaneSpawner : MonoBehaviour
                 Random.Range(-spawnSize.z / 2, spawnSize.z / 2)
             );
 
-            GameObject randomPlanePrefab = planePrefabs[Random.Range(0, planePrefabs.Length)];
+            int randomIndex = Random.Range(0, planePrefabs.Length);
+            GameObject randomPlanePrefab = planePrefabs[randomIndex];
 
             GameObject plane = Instantiate(randomPlanePrefab, randomPosition, randomPlanePrefab.transform.rotation);
             spawnedPlanes.Add(plane);
 
-            //GameObject smoke = Instantiate(smokePrefab, plane.transform);
-            //smoke.transform.localPosition = new Vector3(2, 3, 0);
+            Vector3 smokeOffset;
+            if (randomIndex == 0)
+            {
+                smokeOffset = new Vector3(0, 0, -3); 
+            }
+            else
+            {
+                smokeOffset = new Vector3(0, 4, -3); 
+            }
 
-            //smoke.transform.rotation = plane.transform.rotation * Quaternion.Euler(0, 180f, 0);
+            GameObject smoke = Instantiate(smokePrefab, plane.transform);
+            smoke.transform.localPosition = smokeOffset;
+            smoke.transform.rotation = plane.transform.rotation * Quaternion.Euler(0, 180f, 0);
 
             float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(interval);
+
             Destroy(plane, 16f);
         }
     }
@@ -73,6 +84,7 @@ public class PlaneSpawner : MonoBehaviour
             }
         }
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
