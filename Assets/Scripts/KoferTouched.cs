@@ -5,9 +5,10 @@ public class KoferTouched : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Kofer"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("WON");
+            SceneManager.LoadScene("Win");
         }
     }
 }

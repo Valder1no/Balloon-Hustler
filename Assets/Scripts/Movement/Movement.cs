@@ -44,8 +44,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position += currentVelocity * Time.deltaTime;
 
         // Balloon inflation
-        float leftInflate = Mathf.Clamp01((1 - input.x) / 2f + input.y);
-        float rightInflate = Mathf.Clamp01((1 + input.x) / 2f + input.y);
+        float verticalFactor = 0.5f; // less vertical contribution
+        float leftInflate = Mathf.Clamp01((1 - input.x) / 2f + input.y * verticalFactor);
+        float rightInflate = Mathf.Clamp01((1 + input.x) / 2f + input.y * verticalFactor);
 
         if (leftBalloon != null) leftBalloon.Inflate(leftInflate);
         if (rightBalloon != null) rightBalloon.Inflate(rightInflate);

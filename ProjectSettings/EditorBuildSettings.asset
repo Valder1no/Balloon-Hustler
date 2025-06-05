@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MainMenu.unity
+    guid: 13ee59c802ee88b4fb7ffc9e10eff7e7
   - enabled: 1
     path: Assets/Scenes/Raigo.unity
     guid: dc423e59456a5da45aaadc301a35fb45
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 6660c5969cff4ea4ea6ea7fd613326de
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

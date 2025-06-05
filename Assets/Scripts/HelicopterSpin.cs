@@ -4,6 +4,6 @@ public class HelicopterSpin : MonoBehaviour
 {
     void Update()
     {
-        transform.Rotate(0, 0, 10);
+        transform.Rotate(0, 0, 3);
     }
 }
