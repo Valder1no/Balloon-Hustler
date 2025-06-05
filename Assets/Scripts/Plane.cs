@@ -77,7 +77,7 @@ public class PlaneSpawner : MonoBehaviour
 
         foreach (GameObject plane in spawnedPlanes)
         {
-            moveSpeed = Random.Range(7f, 15f);
+            moveSpeed = Random.Range(7f, 36f);
             if (plane != null)
             {
                 plane.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);

@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 2500543300739145371}
   - component: {fileID: 4771463988409993298}
   - component: {fileID: 839037947166687876}
-  - component: {fileID: 1077426230742544067}
   m_Layer: 0
   m_Name: Helicopter2
   m_TagString: Helicopter
@@ -357,27 +356,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.39162585, y: 0.55774355, z: 0.3884913}
   m_Center: {x: 0.011077769, y: 3.2031271, z: -0.74326324}
---- !u!65 &1077426230742544067
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756556930645523434}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.39162585, y: 0.21857357, z: 11.456232}
-  m_Center: {x: 0.011077762, y: 3.5268083, z: -0.6691308}
 --- !u!1 &1739543179174265037
 GameObject:
   m_ObjectHideFlags: 0
