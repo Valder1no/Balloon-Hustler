@@ -1,21 +1,27 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
-public class ProgressTracker : MonoBehaviour
+public class VerticalProgressBar : MonoBehaviour
 {
     public Transform player;
-    public TextMeshProUGUI text;
+    public float goalY;
+    
+    private float startY;
 
-    public float startY = 0f;
-    public float goalY = 670000000000f;
+    public Image fillImage;  // Assign the FillImage in the Inspector
+
+    void Start()
+    {
+        if (player != null)
+            startY = player.position.y;
+    }
 
     void Update()
     {
-        if (player != null && text != null)
+        if (player != null && fillImage != null)
         {
             float progress = Mathf.InverseLerp(startY, goalY, player.position.y);
-            int percent = Mathf.Clamp(Mathf.RoundToInt(progress * 100f), 0, 100);
-            text.text = "Progress: " + percent + "%";
+            fillImage.fillAmount = Mathf.Clamp01(progress);
         }
     }
 }

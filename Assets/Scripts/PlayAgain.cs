@@ -14,4 +14,14 @@ public class PlayAgain : MonoBehaviour
         Debug.Log("Gettin clicked");
         SceneManager.LoadScene("Raigo");
     }
+
+    public void MainMenu() 
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame() 
+    {
+        Application.Quit();
+    }
 }
