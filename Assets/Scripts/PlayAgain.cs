@@ -12,7 +12,7 @@ public class PlayAgain : MonoBehaviour
     public void PlayOnceMore()
     {
         Debug.Log("Gettin clicked");
-        SceneManager.LoadScene("Raigo");
+        SceneManager.LoadScene("Level1");
     }
 
     public void MainMenu() 
